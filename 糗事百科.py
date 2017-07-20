@@ -36,8 +36,10 @@ class QSBK:
             print('页面加载失败。。。')
             return None
         #用正则表达式匹配出作者，段子内容，段子里面的图片，点赞数
-       pattern = re.compile('<div.*?author clearfix">.*?<a.*?<h2.*?>(.*?)</h2>.*?<div.*?content">.*?<span.*?>(.*?)</span>'
-                        '.*?</div>(.*?)<div class="stats.*?class="number">(.*?)</i>',re.S)
+        pattern = re.compile(
+            '<div.*?author clearfix">.*?<a.*?<h2.*?>(.*?)</h2>.*?<div.*?content">.*?<span.*?>(.*?)</span>(.*?)'
+            '<div class="stats.*?class="number">(.*?)</i>',
+            re.S)
         items = re.findall(pattern, pageCode)
         pageStories = []
         #遍历items，找出不含img的段子
@@ -89,3 +91,4 @@ if __name__=="__main__":
 
     spider = QSBK()
     spider.start()
+
